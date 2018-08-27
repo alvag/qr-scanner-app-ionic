@@ -8,6 +8,8 @@ export class ScanData {
 
         if ( info.startsWith( 'http' ) ) {
             this.tipo = 'http';
+        } else if ( info.startsWith( 'geo' ) ) {
+            this.tipo = 'mapa';
         }
     }
 }

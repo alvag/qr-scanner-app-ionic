@@ -18,7 +18,8 @@ export class HomePage {
     scan() {
 
         if ( !this.platform.is( 'cordova' ) ) {
-            this.historialProvider.agregarHistorial( 'http://google.com' );
+            // this.historialProvider.agregarHistorial( 'http://google.com' );
+            this.historialProvider.agregarHistorial( 'geo:-12.111062,-77.0315913' );
             return;
         }
 
