@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { GuardadosPage } from '../pages/guardados/guardados';
 import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule( {
     declarations: [
@@ -33,6 +34,7 @@ import { TabsPage } from '../pages/tabs/tabs';
     providers: [
         StatusBar,
         SplashScreen,
+        BarcodeScanner,
         { provide: ErrorHandler, useClass: IonicErrorHandler }
     ]
 } )
