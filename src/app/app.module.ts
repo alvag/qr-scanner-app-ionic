@@ -6,25 +6,34 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { GuardadosPage } from '../pages/guardados/guardados';
+import { MapaPage } from '../pages/mapa/mapa';
+import { TabsPage } from '../pages/tabs/tabs';
 
-@NgModule({
-  declarations: [
-    MyApp,
-    HomePage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
-})
+@NgModule( {
+    declarations: [
+        MyApp,
+        HomePage,
+        GuardadosPage,
+        MapaPage,
+        TabsPage
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot( MyApp )
+    ],
+    bootstrap: [ IonicApp ],
+    entryComponents: [
+        MyApp,
+        HomePage,
+        GuardadosPage,
+        MapaPage,
+        TabsPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        { provide: ErrorHandler, useClass: IonicErrorHandler }
+    ]
+} )
 export class AppModule {}
