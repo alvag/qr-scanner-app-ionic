@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AgmCoreModule } from '@agm/core';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { GuardadosPage } from '../pages/guardados/guardados';
@@ -23,7 +25,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot( MyApp )
+        IonicModule.forRoot( MyApp ),
+        AgmCoreModule.forRoot( {
+            apiKey: 'AIzaSyD9WsxtXzGpmkbBMhluWQ5kuWum8QjFhIs'
+        } )
     ],
     bootstrap: [ IonicApp ],
     entryComponents: [

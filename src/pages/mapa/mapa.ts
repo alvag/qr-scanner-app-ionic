@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 @Component( {
     selector: 'page-mapa',
@@ -7,7 +7,12 @@ import { NavController, NavParams } from 'ionic-angular';
 } )
 export class MapaPage {
 
-    constructor( public navCtrl: NavController, public navParams: NavParams ) {
+    lat: number;
+    lng: number;
+
+    constructor( public navParams: NavParams ) {
+        this.lat = -12.111062;
+        this.lng = -77.0315913;
     }
 
 }
