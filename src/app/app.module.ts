@@ -27,7 +27,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         BrowserModule,
         IonicModule.forRoot( MyApp ),
         AgmCoreModule.forRoot( {
-            apiKey: 'AIzaSyD9WsxtXzGpmkbBMhluWQ5kuWum8QjFhIs'
+            apiKey: ''
         } )
     ],
     bootstrap: [ IonicApp ],
