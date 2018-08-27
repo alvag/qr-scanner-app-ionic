@@ -1,0 +1,7 @@
+{
+  "name": "qr-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
