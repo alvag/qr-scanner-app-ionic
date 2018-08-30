@@ -28,7 +28,7 @@ import { ToastProvider } from '../providers/toast/toast';
         BrowserModule,
         IonicModule.forRoot(MyApp),
         AgmCoreModule.forRoot({
-            apiKey: ''
+            apiKey: process.env.GOOGLE_MAPS_API_KEY
         })
     ],
     bootstrap: [IonicApp],
