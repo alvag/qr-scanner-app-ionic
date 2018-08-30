@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { Contacts } from '@ionic-native/contacts';
 import { AgmCoreModule } from '@agm/core';
 
 import { MyApp } from './app.component';
@@ -14,8 +14,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HistorialProvider } from '../providers/historial/historial';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ToastProvider } from '../providers/toast/toast';
 
-@NgModule( {
+@NgModule({
     declarations: [
         MyApp,
         HomePage,
@@ -25,12 +26,12 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot( MyApp ),
-        AgmCoreModule.forRoot( {
+        IonicModule.forRoot(MyApp),
+        AgmCoreModule.forRoot({
             apiKey: ''
-        } )
+        })
     ],
-    bootstrap: [ IonicApp ],
+    bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
         HomePage,
@@ -43,8 +44,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         SplashScreen,
         BarcodeScanner,
         InAppBrowser,
+        Contacts,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        HistorialProvider
+        HistorialProvider,
+        ToastProvider
     ]
-} )
-export class AppModule {}
+})
+export class AppModule { }

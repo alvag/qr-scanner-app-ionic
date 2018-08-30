@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 import { ScanData } from '../../models/scan-data.model';
-import { ModalController } from 'ionic-angular';
+import { ModalController, Platform } from 'ionic-angular';
 import { MapaPage } from '../../pages/mapa/mapa';
+import { ToastProvider } from '../toast/toast';
 
 @Injectable()
 export class HistorialProvider {
@@ -10,7 +12,10 @@ export class HistorialProvider {
     private historial: ScanData[] = [];
 
     constructor(private iab: InAppBrowser,
-        private modalCtrl: ModalController) {
+        private platform: Platform,
+        private modalCtrl: ModalController,
+        private contacts: Contacts,
+        private toast: ToastProvider) {
 
     }
 
@@ -47,6 +52,22 @@ export class HistorialProvider {
     private crearContacto(texto: string) {
         let campos: any = this.parse_vcard(texto);
         console.log(campos);
+
+        if (!this.platform.is('cordova')) {
+            return;
+        }
+
+        let contact: Contact = this.contacts.create();
+        contact.name = new ContactName(null, campos.fn);
+        contact.phoneNumbers = [];
+        campos.tel.forEach(x => {
+            contact.phoneNumbers.push(new ContactField(x.meta.TYPE, x.value[0]));
+        });
+
+        contact.save().then(
+            () => this.toast.presentToast('El contacto ha sido guardado'),
+            (error) => this.toast.presentToast(`Error: ${error}`)
+        );
     }
 
     private parse_vcard(input: string) {

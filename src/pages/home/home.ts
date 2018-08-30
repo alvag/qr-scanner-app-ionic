@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { ToastController, Platform } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 import { HistorialProvider } from '../../providers/historial/historial';
+import { ToastProvider } from '../../providers/toast/toast';
 
 @Component({
     selector: 'page-home',
@@ -10,8 +11,8 @@ import { HistorialProvider } from '../../providers/historial/historial';
 export class HomePage {
 
     constructor(private barcodeScanner: BarcodeScanner,
-        private toastCtrl: ToastController,
         private platform: Platform,
+        private toast: ToastProvider,
         private historialProvider: HistorialProvider) {
     }
 
@@ -39,19 +40,8 @@ END:VCARD`);
             if (barcodeData.cancelled === false && barcodeData.text != null) {
                 this.historialProvider.agregarHistorial(barcodeData.text);
             }
-
         }).catch(error => {
-            console.log('Error', error);
-            this.presentToast(`Error: ${error}`);
+            this.toast.presentToast(`Error: ${error}`);
         });
     }
-
-    presentToast(message: string) {
-        const toast = this.toastCtrl.create({
-            message: message,
-            duration: 3000
-        });
-        toast.present();
-    }
-
 }
