@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { ScanData } from '../../models/scan-data.model';
 import { ModalController, Platform } from 'ionic-angular';
 import { MapaPage } from '../../pages/mapa/mapa';
@@ -15,7 +16,8 @@ export class HistorialProvider {
         private platform: Platform,
         private modalCtrl: ModalController,
         private contacts: Contacts,
-        private toast: ToastProvider) {
+        private toast: ToastProvider,
+        private emailComposer: EmailComposer) {
 
     }
 
@@ -44,14 +46,41 @@ export class HistorialProvider {
             case 'contacto':
                 this.crearContacto(scanData.info);
                 break;
+            case 'email':
+                this.enviarCorreo(scanData.info);
+                break;
             default:
                 console.log('Tipo no soportado');
         }
     }
+    enviarCorreo(info: string) {
+        let data = this.getEmailData(info);
+        let email = {
+            to: data.email,
+            subject: data.asunto,
+            body: data.mensaje
+        };
 
-    private crearContacto(texto: string) {
-        let campos: any = this.parse_vcard(texto);
-        console.log(campos);
+        this.emailComposer.open(email).catch(error => {
+            this.toast.presentToast('Error: ' + error);
+        });
+    }
+
+    getEmailData(info: string) {
+        let data = info.replace('MATMSG:TO:', '');
+        data = data.replace(';SUB:', '|');
+        data = data.replace(';BODY:', '|');
+        data = data.replace(';;', '');
+
+        return {
+            email: data.split('|')[0],
+            asunto: data.split('|')[1],
+            mensaje: data.split('|')[2],
+        };
+    }
+
+    private crearContacto(info: string) {
+        let campos: any = this.parse_vcard(info);
 
         if (!this.platform.is('cordova')) {
             return;

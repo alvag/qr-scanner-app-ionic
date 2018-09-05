@@ -21,22 +21,21 @@ export class HomePage {
         if (!this.platform.is('cordova')) {
             // this.historialProvider.agregarHistorial( 'http://google.com' );
             // this.historialProvider.agregarHistorial( 'geo:-12.111062,-77.0315913' );
-            this.historialProvider.agregarHistorial(`BEGIN:VCARD
-VERSION:2.1
-N:Kent;Clark
-FN:Clark Kent
-ORG:
-TEL;HOME;VOICE:12345
-TEL;TYPE=cell:67890
-ADR;TYPE=work:;;;
-EMAIL:clark@superman.com
-END:VCARD`);
+            this.historialProvider.agregarHistorial('MATMSG:TO:aaaa@gmail.com;SUB:Asunto;BODY:mi mensaje;;');
+            //             this.historialProvider.agregarHistorial(`BEGIN:VCARD
+            // VERSION:2.1
+            // N:Kent;Clark
+            // FN:Clark Kent
+            // ORG:
+            // TEL;HOME;VOICE:12345
+            // TEL;TYPE=cell:67890
+            // ADR;TYPE=work:;;;
+            // EMAIL:clark@superman.com
+            // END:VCARD`);
             return;
         }
 
         this.barcodeScanner.scan().then(barcodeData => {
-            console.log('Barcode data', barcodeData);
-
             if (barcodeData.cancelled === false && barcodeData.text != null) {
                 this.historialProvider.agregarHistorial(barcodeData.text);
             }

@@ -15,6 +15,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HistorialProvider } from '../providers/historial/historial';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ToastProvider } from '../providers/toast/toast';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { ToastProvider } from '../providers/toast/toast';
         BarcodeScanner,
         InAppBrowser,
         Contacts,
+        EmailComposer,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         HistorialProvider,
         ToastProvider
